@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:qualcombustivel/widgets/input.widget.dart';
 import 'package:qualcombustivel/widgets/logo.widget.dart';
 
 void main() {
@@ -33,37 +34,33 @@ class HomePage extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           Logo(),
-          Row(children: <Widget>[
-            Container(
-              width: 100, 
-              alignment: Alignment.centerRight,
+          Input(
+            ctrl: this._gasCtrl,
+            label: "Gasolina"
+          ),
+          Input(
+            ctrl: this._alcCtrl,
+            label: "Álcool"
+          ),
+          Container(
+            margin: EdgeInsets.all(30),
+            height: 60,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.8),
+              borderRadius: BorderRadius.circular(60)
+            ),            
+            child: FlatButton(
               child: Text(
-                "Gasolina",
+                "CALCULAR",
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 35,
+                  color: Theme.of(context).primaryColor,
+                  fontSize: 25,
                   fontFamily: "Big Shoulders Display"
                 ),
               ),
+              onPressed: () {},
             ),
-            SizedBox(
-              width: 20,
-            ),
-            Expanded(
-              child: TextFormField(
-                controller: _gasCtrl,
-                keyboardType: TextInputType.number,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 45,
-                  fontFamily: "Big Shoulders Display"
-                ),
-                decoration: InputDecoration(
-                  border: InputBorder.none
-                ),
-              )
-            )
-          ],)
+          ),
         ],
       )
     );
