@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Color _color = Colors.deepPurple;
   var _gasCtrl = new MoneyMaskedTextController();
   var _alcCtrl = new MoneyMaskedTextController();
   var _busy = false;
@@ -20,21 +21,27 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor, //Obtendo cor primária
-      body: ListView(
-        children: <Widget>[
-          Logo(),
-          this._completed
-            ?  Success(
-                result: this._resultText,
-                reset: reset
+      body: AnimatedContainer(
+        duration: Duration(
+          milliseconds: 1200,
+        ),
+        color: this._color,
+        child:ListView(
+          children: <Widget>[
+            Logo(),
+            this._completed
+              ?  Success(
+                  result: this._resultText,
+                  reset: reset
+                )
+              : SubmitForm(
+                gasCtrl: this._gasCtrl,
+                alcCtrl: this._alcCtrl,
+                busy: this._busy,
+                submitFunc: calculate,
               )
-            : SubmitForm(
-              gasCtrl: this._gasCtrl,
-              alcCtrl: this._alcCtrl,
-              busy: this._busy,
-              submitFunc: calculate,
-            )
-        ]
+          ]
+        )
       )
     );
   }
@@ -47,6 +54,7 @@ class _HomePageState extends State<HomePage> {
     double res = alc / gas;
 
     setState(() {
+      this._color = Colors.deepPurpleAccent;
       this._completed = false;
       this._busy = true;    
     });
@@ -61,7 +69,8 @@ class _HomePageState extends State<HomePage> {
           }
         
           this._completed = true;
-          this._busy = false;    
+          this._busy = false;
+          this._color = Colors.deepPurple;
         });
       });
   }
@@ -72,6 +81,7 @@ class _HomePageState extends State<HomePage> {
       this._gasCtrl = new MoneyMaskedTextController();
       this._completed = false;
       this._busy = false;
+      this._color = Colors.deepPurple;
     });
   }
 }
