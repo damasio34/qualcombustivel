@@ -33,18 +33,37 @@ class HomePage extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           Logo(),
-          TextFormField(
-            controller: _gasCtrl,
-            keyboardType: TextInputType.number,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 45,
-              fontFamily: "Big Shoulders Display"
+          Row(children: <Widget>[
+            Container(
+              width: 100, 
+              alignment: Alignment.centerRight,
+              child: Text(
+                "Gasolina",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 35,
+                  fontFamily: "Big Shoulders Display"
+                ),
+              ),
             ),
-            decoration: InputDecoration(
-              border: InputBorder.none
+            SizedBox(
+              width: 20,
             ),
-          )
+            Expanded(
+              child: TextFormField(
+                controller: _gasCtrl,
+                keyboardType: TextInputType.number,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 45,
+                  fontFamily: "Big Shoulders Display"
+                ),
+                decoration: InputDecoration(
+                  border: InputBorder.none
+                ),
+              )
+            )
+          ],)
         ],
       )
     );
